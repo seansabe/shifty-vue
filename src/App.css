@@ -1,0 +1,22 @@
+html,
+body {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    /*background-color: #7c24c4 !important;*/
+    background: rgb(107, 22, 208) !important;
+    background: linear-gradient(90deg, rgba(107, 22, 208, 1) 0%, rgba(153, 45, 176, 1) 50%, rgba(199, 32, 145, 1) 100%) !important;
+}
+
+.nav-link {
+    /*color: #7c24c4 !important;*/
+    color: rgba(153, 45, 176, 1) !important;
+}
+
+.nav-link.disabled {
+    color: #808080 !important;
+}
+
+.nav-link:hover {
+    color: #808080 !important;
+}

@@ -1,26 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <RouterView />
+  <div class="footer d-flex flex-row justify-content-center align-items-center w-100">
+    <span>&copy; Shifty</span>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import './App.css'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { RouterView }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.footer {
+  color: white;
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer span {
+  font-weight: 500;
 }
 </style>
