@@ -17,13 +17,13 @@
         </div>
       </div>
       <form class="container-fluid justify-content-end">
-        <button class="btn btn-dark me-2 opt-link disabled" type="button">Post a gig</button>
-        <button class="btn btn-dark me-2 opt-link disabled" type="button">Apply for a gig</button>
+        <button class="btn btn-dark me-2 btn-shifty-primary disabled" type="button">Post a gig</button>
+        <button class="btn btn-dark me-2 btn-shifty-primary disabled" type="button">Apply for a gig</button>
         <span class="space-horizontal"></span>
         <div class="navbar-nav">
           <a class="nav-link" href="#" @click="goToRegister">Register</a>
         </div>
-        <button class="btn login btn-dark me-2" type="button" @click="goToSignIn">Sign In</button>
+        <button class="btn btn-shifty-primary btn-dark me-2" type="button" @click="goToSignIn">Sign In</button>
       </form>
     </nav>
   </div>
