@@ -8,6 +8,14 @@ body {
     background: linear-gradient(90deg, rgba(107, 22, 208, 1) 0%, rgba(153, 45, 176, 1) 50%, rgba(199, 32, 145, 1) 100%) !important;
 }
 
+.content {
+    height: 83vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .nav-link {
     /*color: #7c24c4 !important;*/
     color: rgba(153, 45, 176, 1) !important;
