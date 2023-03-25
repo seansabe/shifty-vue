@@ -20,3 +20,39 @@ body {
 .nav-link:hover {
     color: #808080 !important;
 }
+
+
+.bar.container {
+    height: 6vh;
+    background-color: white;
+    border-radius: 8px;
+}
+
+button.login,
+button.opt-link disabled {
+    /*background-color: rgba(153, 45, 176, 1);
+      border: rgba(153, 45, 176, 1);*/
+    background-color: #7c24c4;
+    border: #7c24c4;
+}
+
+.space-vertical {
+    height: 1vh;
+    width: 100%;
+}
+
+.space-horizontal {
+    width: 10px;
+    height: 10px;
+}
+
+.footer {
+    color: white;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer span {
+    font-weight: 500;
+}
