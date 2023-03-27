@@ -24,6 +24,19 @@
 
 <script>
 
+export default {
+    name: "userLogin",
+    data() {
+        return {
+            studentLoginRequest: { studentId: "", password: "" },
+            message: ""
+        }
+    },
+    methods: {
+    },
+    mounted() {
+    }
+}
 </script>
 
 <style>

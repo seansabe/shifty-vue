@@ -4,4 +4,5 @@ class LoginService {
         return http.post("/login", data);
     }
 }
+
 export default new LoginService();
