@@ -1,6 +1,6 @@
 import http from "../http-common.js";
-class LoginService{
-    login(data){
+class LoginService {
+    login(data) {
         return http.post("/login", data);
     }
 }
