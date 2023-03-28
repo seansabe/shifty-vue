@@ -13,21 +13,31 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Posted Gigs</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Gigs I've Applied</a>
           </div>
         </div>
       </div>
+      <form class="container-fluid justify-content-start">
+        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button">Post a
+          gig</button>
+        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button">Apply for
+          a gig</button>
+      </form>
       <form class="container-fluid justify-content-end">
-        <button class="btn btn-dark me-2 btn-shifty-primary disabled" type="button">Post a gig</button>
-        <button class="btn btn-dark me-2 btn-shifty-primary disabled" type="button">Apply for a gig</button>
-        <span class="space-horizontal"></span>
         <div class="navbar-nav">
-          <a class="nav-link" href="#" @click="goToRegister">Register</a>
+          <a class="nav-link" :class="currentUser ? 'disabled' : ''" href=" #" @click="goToRegister">{{ currentUser ?
+            ("Hello, ") +
+            currentUser.firstName : ("Register") }}</a>
         </div>
-        <button class="btn btn-shifty-primary btn-dark me-2" type="button" @click="goToSignIn">Sign In</button>
+        <button class="btn btn-shifty-primary btn-dark me-2" type="button"
+          @click="currentUser ? logout() : goToLogin()">{{
+            currentUser ? 'Sign Out'
+            : 'Sign In' }}</button>
       </form>
     </nav>
   </div>
-  <RouterView />
+  <RouterView @get-user-data="getCurrentUser" />
   <div class="footer d-flex flex-row justify-content-center align-items-center w-100">
     <span>&copy; Shifty</span>
   </div>
@@ -39,22 +49,54 @@ import './App.css'
 
 export default {
   name: 'App',
+
+  data() {
+    return {
+      currentUser: null,
+      disabled: "disabled"
+    }
+  },
+
   components: { RouterView },
+
   methods: {
-    goToSignIn() {
+    getCurrentUser() {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (this.currentUser != null) {
+        this.disabled = "";
+      }
+      console.log(this.currentUser);
+    },
+
+    goToLogin() {
       this.$router.push('/login');
     },
 
+    logout() {
+      localStorage.removeItem('currentUser');
+      this.currentUser = null;
+      this.disabled = "disabled";
+      console.log("Logout successfully")
+      this.$router.push('/');
+    },
+
     goToRegister() {
-      this.$router.push({name: "register"});
+      this.$router.push({ name: "register" });
     },
 
     goToHome() {
       this.$router.push('/');
     }
+  },
+
+  mounted() {
+    this.getCurrentUser();
+  },
+
+  watch: {
+
   }
 }
-
 </script>
 
 <style></style>
