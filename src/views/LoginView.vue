@@ -1,6 +1,6 @@
 <template>
     <div class="content"> <!-- DON'T DELETE THIS DIV. ALL THE CONTENT MUST GO INSIDE -->
-        <div class="wrapperLogin d-flex flex-column justify-content-center align-items-center">
+        <div class="wrapper d-flex flex-column justify-content-center align-items-center">
             <img src="../assets/shifty-prototype@3840x900.png" alt="Shifty" height="50">
             <form>
                 <div class="mb-3">
@@ -58,14 +58,14 @@ export default {
 </script>
 
 <style>
-.wrapperLogin {
+.wrapper {
     background-color: white;
     width: 400px;
     height: 500px;
     border-radius: 20px;
 }
 
-.wrapperLogin img {
+.wrapper img {
     margin-bottom: 50px;
 }
 </style>
