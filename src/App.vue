@@ -21,7 +21,7 @@
       <form class="container-fluid justify-content-start">
         <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button">Post a
           gig</button>
-        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button">Apply for
+        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button" @click="goToApply">Apply for
           a gig</button>
       </form>
       <form class="container-fluid justify-content-end">
@@ -86,6 +86,10 @@ export default {
 
     goToHome() {
       this.$router.push('/');
+    },
+
+    goToApply() {
+      this.$router.push('/jobs');
     }
   },
 

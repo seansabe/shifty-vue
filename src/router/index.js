@@ -18,9 +18,13 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: () => import('../views/LoginView.vue')
+        },
+        {
+            path: '/jobs',
+            name: 'applyView',
+            component: () => import('../views/ApplyView.vue')
         }
     ]
 })
 
 export default router
-vgskfduygfukayegkyega

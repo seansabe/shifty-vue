@@ -41,7 +41,7 @@ export default {
                 var user = response.data;
                 console.log(user);
                 this.message = user;
-                localStorage.setItem("currentUser", JSON.stringify(user))
+                localStorage.setItem("currentUser", JSON.stringify(user)) //saved user info in local storage
                 this.$emit('get-user-data', user);
                 this.$router.push({ name: "home" });
             }).catch(error => {
