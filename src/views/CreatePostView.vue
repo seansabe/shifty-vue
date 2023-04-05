@@ -86,7 +86,7 @@ export default {
                         let job = response.data;
                         console.log(job);
                         this.message = job;
-                        this.$router.push({ name: "home" });
+                        this.$router.push({ name: "listPostedGigs" });
 
                     })
                     .catch(error => {
