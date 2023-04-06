@@ -11,7 +11,7 @@ const router = createRouter({
         },
         {
             path: '/register',
-            name: 'register',
+            name: 'userRegister',
             component: () => import('../views/RegisterView.vue')
         },
         {
@@ -23,6 +23,16 @@ const router = createRouter({
             path: '/create-post',
             name: 'createPost',
             component: () => import('../views/CreatePostView.vue')
+        },
+        {
+            path: '/profile',
+            name: 'profileView',
+            component: () => import('../views/ProfileView.vue')
+        },
+        {
+            path: '/edit-profile',
+            name: 'editProfile',
+            component: () => import('../views/EditProfileView.vue')
         }
     ]
 })

@@ -13,8 +13,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Posted Gigs</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Gigs I've Applied</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">My Gigs</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">My Applies</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser"  href="#" @click="goToProfile">Profile</a>
           </div>
         </div>
       </div>
@@ -72,6 +73,10 @@ export default {
       this.$router.push('/login');
     },
 
+    goToProfile() {
+      this.$router.push('/profile');
+    },
+
     logout() {
       localStorage.removeItem('currentUser');
       this.currentUser = null;
@@ -81,7 +86,7 @@ export default {
     },
 
     goToRegister() {
-      this.$router.push({ name: "register" });
+      this.$router.push({ name: "userRegister" });
     },
 
     goToHome() {
