@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Posted Gigs</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="listPostedGigs">Posted Gigs</a>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Gigs I've Applied</a>
           </div>
         </div>
@@ -89,6 +89,9 @@ export default {
     },
     createPost(){
        this.$router.push({ name: "createPost" });
+     },
+     listPostedGigs(){
+      this.$router.push({ name: "listPostedGigs" });
      }
   },
 
