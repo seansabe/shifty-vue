@@ -28,6 +28,15 @@ const router = createRouter({
             path: '/applications',
             name: 'userApplications',
             component: () => import('../views/UserApplications.vue')
+        },
+            path: '/create-post',
+            name: 'createPost',
+            component: () => import('../views/CreatePostView.vue')
+        },
+        {
+            path: '/list-posted-gigs',
+            name: 'listPostedGigs',
+            component: () => import('../views/PostedGigsView.vue')
         }
         
     ]

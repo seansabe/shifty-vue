@@ -13,13 +13,13 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Posted Gigs</a>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="userApplications">Gigs I've Applied</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="listPostedGigs">Posted Gigs</a>
           </div>
         </div>
       </div>
       <form class="container-fluid justify-content-start">
-        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button">Post a
+        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button" @click="createPost">Post a
           gig</button>
         <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button" @click="goToApply">Apply for
           a gig</button>
@@ -94,6 +94,14 @@ export default {
 
     userApplications() {
       this.$router.push('/applications');
+    },
+
+    createPost(){
+       this.$router.push({ name: "createPost" });
+    },
+     
+    listPostedGigs(){
+      this.$router.push({ name: "listPostedGigs" });
     }
   },
 
