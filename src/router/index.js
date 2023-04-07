@@ -23,7 +23,13 @@ const router = createRouter({
             path: '/jobs',
             name: 'applyView',
             component: () => import('../views/ApplyView.vue')
+        },
+        {
+            path: '/applications',
+            name: 'userApplications',
+            component: () => import('../views/UserApplications.vue')
         }
+        
     ]
 })
 

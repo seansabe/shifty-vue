@@ -11,36 +11,29 @@ class ApplicationService{
         }
     return http.post('/applications', newApp);
     }
-    // getPostedJobs(user_id) {
-    //     return http.get(`/users/${user_id}/jobs`);
-    // }
-    // getUnPostedJobs(user_id) {
-    //     return new Promise ((resolve, reject) => {
-    //         this.getPostedJobs(user_id)
-    //         .then(response => {
-    //             const jobs = response.data.map(job => job.jobId);
-    //             http.get('/jobs')
-    //             .then(response => {
-    //                 const allJobs = response.data;
-    //                 const unpostedJobs = allJobs.filter(
-    //                     (a) => !(jobs.map(c => c.id).includes(a.id))  );
-    //                     if(unpostedJobs) {
-    //                         response.data = unpostedJobs;
-    //                         console.log(unpostedJobs);
-    //                         resolve(response);
-    //                     }
-    //             })
-    //             .catch(error => {
-    //                 reject(error);
-    //             })
-    //         })
-    //         .catch(error =>{
-    //             reject(error);
-    //         })
-    //     }
-
-    //     );
-    // }
+    getUserApplications(user_id){
+        return new Promise ((resolve, reject) => {
+            http.get('/applications')
+            .then(response => {
+                const allApplications = response.data;
+                const userApplications = allApplications.filter(
+                    application => application.userBuster.userId == user_id);
+                    if(userApplications) {
+                        response.data = userApplications;
+                        console.log(userApplications);
+                        resolve(response);
+                    }
+            })
+            .catch(error =>{
+                reject(error);
+            })
+        }
+        );
+    }
+    cancelApplication(applicationId) {
+        console.log("Application Deleted #" + applicationId);
+        return http.delete(`/applications/${applicationId}`);
+    }
 }
 
 export default new ApplicationService();

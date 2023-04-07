@@ -14,7 +14,7 @@
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Posted Gigs</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">Gigs I've Applied</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="userApplications">Gigs I've Applied</a>
           </div>
         </div>
       </div>
@@ -90,6 +90,10 @@ export default {
 
     goToApply() {
       this.$router.push('/jobs');
+    },
+
+    userApplications() {
+      this.$router.push('/applications');
     }
   },
 
