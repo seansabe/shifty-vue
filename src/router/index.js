@@ -20,6 +20,15 @@ const router = createRouter({
             component: () => import('../views/LoginView.vue')
         },
         {
+            path: '/jobs',
+            name: 'applyView',
+            component: () => import('../views/ApplyView.vue')
+        },
+        {
+            path: '/applications',
+            name: 'userApplications',
+            component: () => import('../views/UserApplications.vue')
+        },
             path: '/create-post',
             name: 'createPost',
             component: () => import('../views/CreatePostView.vue')
@@ -29,6 +38,7 @@ const router = createRouter({
             name: 'listPostedGigs',
             component: () => import('../views/PostedGigsView.vue')
         }
+        
     ]
 })
 
