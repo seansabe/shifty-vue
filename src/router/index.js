@@ -29,6 +29,7 @@ const router = createRouter({
             name: 'userApplications',
             component: () => import('../views/UserApplications.vue')
         },
+        {
             path: '/create-post',
             name: 'createPost',
             component: () => import('../views/CreatePostView.vue')
@@ -38,7 +39,7 @@ const router = createRouter({
             name: 'listPostedGigs',
             component: () => import('../views/PostedGigsView.vue')
         }
-        
+
     ]
 })
 
