@@ -2,7 +2,8 @@
     <div class="content"> <!-- DON'T DELETE THIS DIV. ALL THE CONTENT MUST GO INSIDE -->
         <div class="wrapperLogin d-flex flex-column justify-content-center align-items-center">
             <img src="../assets/shifty-prototype@3840x900.png" alt="Shifty" height="50">
-            <form>
+            <span class="badge rounded-pill text-bg-danger mb-3">{{ message }}</span>
+            <form id="form">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
@@ -12,10 +13,6 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" v-model="userLoginRequest.password">
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Remember this device</label>
                 </div>
                 <button type="submit" class="btn btn-dark btn-shifty-primary" @click="login">Sign In</button>
             </form>
@@ -37,18 +34,53 @@ export default {
     methods: {
         login(event) {
             event.preventDefault();
-            LoginService.login(this.userLoginRequest).then(response => {
-                var user = response.data;
-                console.log(user);
-                this.message = user;
-                localStorage.setItem("currentUser", JSON.stringify(user)) //saved user info in local storage
-                this.$emit('get-user-data', user);
-                this.$router.push({ name: "home" });
-            }).catch(error => {
-                this.userLoginRequest.email = "";
-                this.userLoginRequest.password = "";
-                console.log(error)
-            });
+
+            if (!(this.userLoginRequest.email).includes("@") && this.userLoginRequest.email != "") {
+                this.message = "Please enter a valid email address";
+                setTimeout(() => {
+                    this.message = "";
+                }, 3000);
+            }
+
+            else if (this.userLoginRequest.email == "" && this.userLoginRequest.password != "") {
+                this.message = "Email is required";
+                setTimeout(() => {
+                    this.message = "";
+                }, 3000);
+            }
+
+            else if (this.userLoginRequest.password == "" && this.userLoginRequest.email != "") {
+                this.message = "Password is required";
+                setTimeout(() => {
+                    this.message = "";
+                }, 3000);
+            }
+
+            else if (this.userLoginRequest.email == "" && this.userLoginRequest.password == "") {
+                this.message = "Email and password are required";
+                setTimeout(() => {
+                    this.message = "";
+                }, 3000);
+            }
+
+            if (this.userLoginRequest.email != "" && this.userLoginRequest.password != "") {
+                LoginService.login(this.userLoginRequest).then(response => {
+                    var user = response.data;
+                    console.log(user);
+                    this.message = user;
+                    localStorage.setItem("currentUser", JSON.stringify(user)) //saved user info in local storage
+                    this.$emit('get-user-data', user);
+                    this.$router.push({ name: "home" });
+                }).catch(error => {
+                    this.userLoginRequest.email = "";
+                    this.userLoginRequest.password = "";
+                    console.log(error)
+                    this.message = "Invalid email or password";
+                    setTimeout(() => {
+                        this.message = "";
+                    }, 3000);
+                });
+            }
         }
     },
     mounted() {
@@ -58,6 +90,10 @@ export default {
 </script>
 
 <style>
+.remove {
+    display: none;
+}
+
 .wrapperLogin {
     background-color: white;
     padding: 50px;
