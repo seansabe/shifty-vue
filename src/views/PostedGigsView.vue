@@ -1,38 +1,45 @@
 <template>
     <div class="content">
-            <div v-if="postedGigsResponse.length > 0"  class="wrapperPostedGigs d-flex flex-column  align-items-center">
+        <div v-if="postedGigsResponse.length > 0" class="wrapperPostedGigs">
             <table class="table table-borderless mb-3" v-for="job in postedGigsResponse" :key="job.jobId">
                 <tbody>
                     <tr>
-                        <td>
+                        <td class="first-row">
                             <h3>{{ job.title }}</h3>
                         </td>
-                        <td class="text-end">{{ job.kindOfJob }} &nbsp;&nbsp;&nbsp; Hourly Rate: ${{ job.hourRate }}
-                            &nbsp;&nbsp;&nbsp; Posted {{ getDaysAgo(job.postingDate) }}</td>
+                        <td class="first-row text-end"><span class="badge rounded-pill text-bg-dark">{{ job.kindOfJob
+                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Hourly
+                                Rate: ${{ job.hourRate
+                                }}</span>
+                            &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Posted {{
+                                getDaysAgo(job.postingDate) }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="4" ><b>Start Date:</b> {{ job.jobStartDate }} &nbsp;&nbsp;&nbsp;<b>Finish Date: </b>{{ job.jobFinishDate
-                        }}</td>
+                        <td colspan="4"><span class="badge rounded-pill text-bg-dark">Start Date: {{ job.jobStartDate
+                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Finish
+                                Date: {{
+                                    job.jobFinishDate
+                                }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="4" >{{ job.description }}</td>
+                        <td colspan="4">{{ job.description }}</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="last-row">
                             You have <b>{{ appsize[job.jobId] }}</b> applicants.
                             <a class="nav-link" aria-current="page" href="#">See applicants</a>
                         </td>
-                        <td class="text-end">
+                        <td class="last-row text-end">
                             <button class="btn btn-dark me-2 btn-shifty-primary" type="button">Edit</button>
                             <button class="btn btn-dark me-2 btn-shifty-primary" type="button">Delete</button>
-                        </td> 
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            </div>
-            <div class="wrapperPostedGigs d-flex flex-column  align-items-center" v-else>
-                No jobs posted yet.
-            </div>
+        </div>
+        <div class="wrapperPostedGigs d-flex flex-column  align-items-center" v-else>
+            No jobs posted yet.
+        </div>
 
     </div>
 </template>
@@ -44,7 +51,7 @@ export default {
         return {
             currentUser: null,
             postedGigsResponse: {},
-            appsize : {}
+            appsize: {}
         }
     },
     methods: {
@@ -70,9 +77,9 @@ export default {
         },
     },
     created() {
-      //  const userId = 1;
-       // const userId = this.getCurrentUser().id;
-       this.getCurrentUser();
+        //  const userId = 1;
+        // const userId = this.getCurrentUser().id;
+        this.getCurrentUser();
         PostedGigService.getJobsByUserId(this.currentUser.userId)
             .then((response) => {
                 const postedGigs = response.data;
@@ -99,22 +106,33 @@ export default {
 
 <style>
 .wrapperPostedGigs {
-    background-color: white;
-    width: 80%;
-    height: 720px;
-    border-radius: 20px;
-    margin-top: 10px;
+    width: 100%;
     overflow: auto;
-    padding: 50px;
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 2px solid #03192e;
-    box-shadow: 4px 5px 5px rgba(189, 93, 93, 0.3);
-    border-image: linear-gradient(to right, rgba(107, 22, 208, 1), rgba(153, 45, 176, 1), rgba(199, 32, 145, 1)) 1;
-    border-image-slice: 1;
+    background-color: white;
+    border-radius: 20px;
 }
 
+td {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+.first-row {
+    padding-top: 50px !important;
+}
+
+.first-row h3 {
+    color: rgba(153, 45, 176, 1) !important;
+}
+
+.last-row {
+    padding-bottom: 50px !important;
+}
+
+.badge {
+    background-color: #7c24c4 !important;
+}
 </style>

@@ -60,8 +60,7 @@ export default {
 <style>
 .wrapperLogin {
     background-color: white;
-    width: 400px;
-    height: 500px;
+    padding: 50px;
     border-radius: 20px;
 }
 
