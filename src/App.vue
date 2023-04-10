@@ -15,7 +15,7 @@
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#">My Gigs</a>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#">My Applies</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser"  href="#" @click="goToProfile">Profile</a>
+            <router-link to="/profile" class="nav-link" aria-current="page" v-if="currentUser"  href="#" @click="goToProfile">Profile</router-link>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
         <div class="navbar-nav">
           <a class="nav-link" :class="currentUser ? 'disabled' : ''" href=" #" @click="goToRegister">{{ currentUser ?
             ("Hello, ") +
-            currentUser.firstName : ("Register") }}</a>
+            this.currentUser.firstName : ("Register") }}</a>
         </div>
         <button class="btn btn-shifty-primary btn-dark me-2" type="button"
           @click="currentUser ? logout() : goToLogin()">{{
@@ -38,7 +38,7 @@
       </form>
     </nav>
   </div>
-  <RouterView @get-user-data="getCurrentUser" />
+  <RouterView @get-user-data="getCurrentUser" :setUpdatedFirstName="setUpdatedFirstName"/>
   <div class="footer d-flex flex-row justify-content-center align-items-center w-100">
     <span>&copy; Shifty</span>
   </div>
@@ -54,13 +54,16 @@ export default {
   data() {
     return {
       currentUser: null,
-      disabled: "disabled"
+      disabled: "disabled",
     }
   },
 
   components: { RouterView },
 
   methods: {
+    setUpdatedFirstName(updatedFirstName){
+        this.currentUser.firstName = updatedFirstName;
+    },
     getCurrentUser() {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       if (this.currentUser != null) {

@@ -22,18 +22,13 @@
                 <div class="mb-3">
                     <label for="userEmail" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp"  v-model="userRegisterRequest.email">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">NEW Password</label>
-                    <input type="password"  class="form-control" id="password"  v-model="userRegisterRequest.password">
-                </div >
-                <div class="mb-3">
-                    <label for="passwordProove" class="form-label">Enter your NEW password again</label>
-                    <input type="password"  class="form-control" id="passwordProove" v-model="passwordProove">
-                </div >
-                <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnSubmit" @click="save">Save</button>
             </form>
+                <div id="btnLine">
+                    <button type="submit" class="btn btn-dark btn-shifty-primary" id="securityUpdate" @click="updatePassword">Change password</button>
+                    <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnSave" @click="save">Save</button>
+                    <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnCancel" @click="cancel">Cancel</button>
+                </div>
         </div>
     </div>
 </template>
@@ -42,17 +37,23 @@
 import EditProfileService from "../services/EditProfileService";
 export default{
     name: "editProfile",
+    props: ['newFirstName','setUpdatedFirstName'],
     data(){
         return{
             userRegisterRequest:{firstName: "", lastName: "",
              address:"", phone:"", email: "", password:""},
              message: "",
-             passwordProove: "",
              currentUser: null,
              userId : ""
         }
     },
     methods: {
+        cancel(){
+            this.$router.push({name: "profileView"});
+        },
+        updatePassword(){
+            this.$router.push({ name: "editPassword" });
+        },
         getCurrentUser(){
             this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
             this.userId = this.currentUser.userId;
@@ -71,16 +72,17 @@ export default{
                 if(!(this.userRegisterRequest.email).includes("@")){
                     this.message = "Your email is incorrect"; 
                 }else{
-                    if(this.userRegisterRequest.password !== this.passwordProove){
-                    this.message = "You entered password check wrong";                    
-                    }else{
-                        EditProfileService.editProfile(this.userRegisterRequest, this.userId)
-                        .then(response=>{
-                            let user = response.data;
-                            localStorage.setItem("currentUser", JSON.stringify(user))
-                            this.$router.push({name: "profileView"});
-                        })
-                    }
+                    EditProfileService.editProfile(this.userRegisterRequest, this.userId)
+                    .then(response=>{
+                        let user = response.data;
+                        localStorage.setItem("currentUser", JSON.stringify(user))
+                        this.setUpdatedFirstName(user.firstName);
+                        this.$router.push({name: "profileView"});
+                    })
+                    .catch(error=>{
+                        this.message = error.response.data.message;
+                        console.log(error.response.data);
+                    })
                 }
             }
         }
@@ -95,8 +97,8 @@ export default{
 <style>
 .wrapperEditProfile {
     background-color: white;
-    width: 400px;
-    height: 720px;
+    width: 450px;
+    height: 550px;
     border-radius: 20px;
 }
 
@@ -106,5 +108,13 @@ export default{
 #incorrectInput{
     color:red;
 }
-
+#btnLine{
+    margin-inline: auto;
+}
+#btnSave{
+    margin-left: 20px;
+}
+#btnCancel{
+    margin-left: 20px;
+}
 </style>

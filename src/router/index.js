@@ -33,6 +33,11 @@ const router = createRouter({
             path: '/edit-profile',
             name: 'editProfile',
             component: () => import('../views/EditProfileView.vue')
+        },
+        {
+            path: '/edit-password',
+            name: 'editPassword',
+            component: () => import('../views/ChangePasswordView.vue')
         }
     ]
 })
