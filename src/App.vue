@@ -13,9 +13,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="userApplications">Gigs I've
-              Applied</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="listPostedGigs">Posted Gigs</a>
+            <router-link to="/profile" class="nav-link" aria-current="page" v-if="currentUser"  href="#" @click="goToProfile">Profile</router-link>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="userApplications">My Applies</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="listPostedGigs">My Gigs</a>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <div class="navbar-nav">
           <a class="nav-link" :class="currentUser ? 'disabled' : ''" href=" #" @click="goToRegister">{{ currentUser ?
             ("Hello, ") +
-            currentUser.firstName : ("Register") }}</a>
+            this.currentUser.firstName : ("Register") }}</a>
         </div>
         <button class="btn btn-shifty-primary btn-dark me-2" type="button"
           @click="currentUser ? logout() : goToLogin()">{{
@@ -41,7 +41,7 @@
     </nav>
   </div>
   <div class="container p-0">
-    <RouterView @get-user-data="getCurrentUser" />
+    <RouterView @get-user-data="getCurrentUser" :setUpdatedFirstName="setUpdatedFirstName"/>
   </div>
   <div class="footer d-flex flex-row justify-content-center align-items-center w-100">
     <span>&copy; Shifty</span>
@@ -58,13 +58,16 @@ export default {
   data() {
     return {
       currentUser: null,
-      disabled: "disabled"
+      disabled: "disabled",
     }
   },
 
   components: { RouterView },
 
   methods: {
+    setUpdatedFirstName(updatedFirstName){
+        this.currentUser.firstName = updatedFirstName;
+    },
     getCurrentUser() {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       if (this.currentUser != null) {
@@ -77,6 +80,10 @@ export default {
       this.$router.push('/login');
     },
 
+    goToProfile() {
+      this.$router.push('/profile');
+    },
+
     logout() {
       localStorage.removeItem('currentUser');
       this.currentUser = null;
@@ -86,7 +93,7 @@ export default {
     },
 
     goToRegister() {
-      this.$router.push({ name: "register" });
+      this.$router.push({ name: "userRegister" });
     },
 
     goToHome() {
