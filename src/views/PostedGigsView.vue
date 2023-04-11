@@ -31,7 +31,8 @@
                         </td>
                         <td class="last-row text-end">
                             <button class="btn btn-dark me-2 btn-shifty-primary" type="button">Edit</button>
-                            <button class="btn btn-dark me-2 btn-shifty-primary" type="button">Delete</button>
+                            <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnCancel"
+                    @click="cancel(job.jobId)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -51,7 +52,8 @@ export default {
         return {
             currentUser: null,
             postedGigsResponse: {},
-            appsize: {}
+            appsize: {},
+            deleteJobResponse: {}
         }
     },
     methods: {
@@ -74,6 +76,18 @@ export default {
                 this.disabled = "";
             }
             console.log(this.currentUser);
+        },
+        cancel(jobId) {
+            console.log(typeof jobId);
+            PostedGigService.cancelJob(jobId)
+                .then(response => {
+                    this.deleteJobResponse = response;
+                    console.log("Deleted job ");
+                    this.$router.go(0);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         },
     },
     created() {
