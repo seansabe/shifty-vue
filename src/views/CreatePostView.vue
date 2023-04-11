@@ -86,7 +86,7 @@ export default {
                         let job = response.data;
                         console.log(job);
                         this.message = job;
-                        this.$router.push({ name: "home" });
+                        this.$router.push({ name: "listPostedGigs" });
 
                     })
                     .catch(error => {
@@ -115,11 +115,8 @@ export default {
 <style>
 .wrapperCreatePost {
     background-color: white;
-    width: 80%;
-    height: 720px;
     border-radius: 20px;
     margin-top: 10px;
-    overflow: auto;
     padding: 50px;
 }
 

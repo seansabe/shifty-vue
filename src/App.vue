@@ -13,16 +13,18 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">My Gigs</a>
-            <a class="nav-link" aria-current="page" v-if="currentUser" href="#">My Applies</a>
             <router-link to="/profile" class="nav-link" aria-current="page" v-if="currentUser"  href="#" @click="goToProfile">Profile</router-link>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="userApplications">My Applies</a>
+            <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="listPostedGigs">My Gigs</a>
           </div>
         </div>
       </div>
       <form class="container-fluid justify-content-start">
-        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button" @click="createPost">Post a
+        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button"
+          @click="createPost">Post a
           gig</button>
-        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button">Apply for
+        <button class="btn btn-dark me-2 btn-shifty-primary" v-if="currentUser" :class="disabled" type="button"
+          @click="goToApply">Apply for
           a gig</button>
       </form>
       <form class="container-fluid justify-content-end">
@@ -38,7 +40,9 @@
       </form>
     </nav>
   </div>
-  <RouterView @get-user-data="getCurrentUser" :setUpdatedFirstName="setUpdatedFirstName"/>
+  <div class="container p-0">
+    <RouterView @get-user-data="getCurrentUser" :setUpdatedFirstName="setUpdatedFirstName"/>
+  </div>
   <div class="footer d-flex flex-row justify-content-center align-items-center w-100">
     <span>&copy; Shifty</span>
   </div>
@@ -95,9 +99,22 @@ export default {
     goToHome() {
       this.$router.push('/');
     },
-    createPost(){
-       this.$router.push({ name: "createPost" });
-     }
+
+    goToApply() {
+      this.$router.push('/jobs');
+    },
+
+    userApplications() {
+      this.$router.push('/applications');
+    },
+
+    createPost() {
+      this.$router.push({ name: "createPost" });
+    },
+
+    listPostedGigs() {
+      this.$router.push({ name: "listPostedGigs" });
+    }
   },
 
   mounted() {
