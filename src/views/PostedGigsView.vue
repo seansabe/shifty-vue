@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <div v-if="postedGigsResponse.length > 0" class="wrapperPostedGigs">
+        <div v-if="postedGigsResponse.length > 0" class="wrapperPostedGigs d-flex flex-column align-items-center">
             <table class="table table-borderless mb-3" v-for="job in postedGigsResponse" :key="job.jobId">
                 <tbody>
                     <tr>
@@ -37,8 +37,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="wrapperPostedGigs d-flex flex-column  align-items-center" v-else>
-            No jobs posted yet.
+        <div class="wrapperPostedGigs d-flex flex-column align-items-center" v-else>
+            <h5>You haven't posted any jobs posted yet.</h5>
         </div>
 
     </div>
@@ -110,6 +110,10 @@ export default {
     overflow: auto;
 }
 
+.wrapperPostedGigs h5 {
+    color: white;
+}
+
 table {
     background-color: white;
     border-radius: 20px;
@@ -132,7 +136,7 @@ td {
     padding-bottom: 50px !important;
 }
 
-.badge {
+.wrapperPostedGigs .badge {
     background-color: #7c24c4 !important;
 }
 </style>
