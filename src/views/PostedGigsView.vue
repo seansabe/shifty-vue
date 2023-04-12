@@ -38,7 +38,7 @@
             </table>
         </div>
         <div class="wrapperPostedGigs d-flex flex-column align-items-center" v-else>
-            <h5>You haven't posted any jobs posted yet.</h5>
+            <h5>You haven't posted any gigs posted yet.</h5>
         </div>
 
     </div>

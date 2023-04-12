@@ -21,18 +21,20 @@
                 </div>
                 <div class="mb-3">
                     <label for="userEmail" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" v-model="userRegisterRequest.email">
+                    <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp"
+                        v-model="userRegisterRequest.email">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password"  class="form-control" id="password" v-model="userRegisterRequest.password">
-                </div >
+                    <input type="password" class="form-control" id="password" v-model="userRegisterRequest.password">
+                </div>
                 <div class="mb-3">
                     <label for="passwordProove" class="form-label">Enter your password again</label>
-                    <input type="password"  class="form-control" id="passwordProove" v-model="passwordProove">
-                </div >
-                <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnSubmit" @click="register">Register</button>
+                    <input type="password" class="form-control" id="passwordProove" v-model="passwordProove">
+                </div>
+                <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnSubmit"
+                    @click="register">Register</button>
             </form>
         </div>
     </div>
@@ -40,46 +42,48 @@
 
 <script>
 import RegisterService from "../services/RegisterService";
-export default{
+export default {
     name: "userRegister",
-    data(){
-        return{
-            userRegisterRequest:{firstName: "", lastName: "",
-             address:"", phone:"", email: "", password:""},
-             message: "",
-             passwordProove: ""
+    data() {
+        return {
+            userRegisterRequest: {
+                firstName: "", lastName: "",
+                address: "", phone: "", email: "", password: ""
+            },
+            message: "",
+            passwordProove: ""
         }
     },
     methods: {
-        register(event){
+        register(event) {
             event.preventDefault();
-            if(this.userRegisterRequest.firstName==""||this.userRegisterRequest.lastName==""||this.userRegisterRequest.address==""||this.userRegisterRequest.phone==""||this.userRegisterRequest.email==""||this.userRegisterRequest.password==""){
+            if (this.userRegisterRequest.firstName == "" || this.userRegisterRequest.lastName == "" || this.userRegisterRequest.address == "" || this.userRegisterRequest.phone == "" || this.userRegisterRequest.email == "" || this.userRegisterRequest.password == "") {
                 this.message = "Please enter the table in every field";
-            }else{
-                if(!(this.userRegisterRequest.email).includes("@")){
-                    this.message = "Your email is incorrect"; 
-                }else{
-                    if(this.userRegisterRequest.password !== this.passwordProove){
-                    this.message = "You entered password check wrong";                    
-                    }else{
+            } else {
+                if (!(this.userRegisterRequest.email).includes("@")) {
+                    this.message = "Your email is incorrect";
+                } else {
+                    if (this.userRegisterRequest.password !== this.passwordProove) {
+                        this.message = "You entered password check wrong";
+                    } else {
                         RegisterService.registration(this.userRegisterRequest)
-                        .then(response => {
-                        let user = response.data;
-                        console.log(user);
-                        this.message = user;
-                        this.$router.push({name: "login"});
-                
-                        })
-                        .catch(error=>{
-                        this.message = error.response.data.message;
-                        console.log(error.response.data);
-                        })
+                            .then(response => {
+                                let user = response.data;
+                                console.log(user);
+                                this.message = user;
+                                this.$router.push({ name: "login" });
+
+                            })
+                            .catch(error => {
+                                this.message = error.response.data.message;
+                                console.log(error.response.data);
+                            })
                     }
                 }
             }
         }
     },
-    mounted(){
+    mounted() {
         this.message = "";
     }
 }
@@ -88,16 +92,11 @@ export default{
 <style>
 .wrapperRegister {
     background-color: white;
-    width: 400px;
-    height: 720px;
+    padding: 50px;
     border-radius: 20px;
 }
 
-.wrapper img {
-    margin-bottom: 50px;
+#incorrectInput {
+    color: red;
 }
-#incorrectInput{
-    color:red;
-}
-
 </style>

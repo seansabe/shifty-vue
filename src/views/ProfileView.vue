@@ -1,12 +1,12 @@
 <template>
     <div class="content"> <!-- DON'T DELETE THIS DIV. ALL THE CONTENT MUST GO INSIDE -->
-        <div class="wrapperProfile d-flex flex-column justify-content-center align-items-center">          
+        <div class="wrapperProfile d-flex flex-column justify-content-center align-items-center">
             <div class="info">
-                <p><b>First Name:</b>&emsp;&emsp;{{userRegisterRequest.firstName}}</p>
-                <p><b>Last Name:</b>&emsp;&emsp;{{userRegisterRequest.lastName}}</p>
-                <p><b>Address:</b>&emsp;&emsp;{{userRegisterRequest.address}}</p>
-                <p><b>Phone:</b>&emsp;&emsp;{{userRegisterRequest.phone}}</p>
-                <p><b>Email:</b>&emsp;&emsp;{{userRegisterRequest.email}}</p>
+                <p><b>First Name:</b>&emsp;&emsp;{{ userRegisterRequest.firstName }}</p>
+                <p><b>Last Name:</b>&emsp;&emsp;{{ userRegisterRequest.lastName }}</p>
+                <p><b>Address:</b>&emsp;&emsp;{{ userRegisterRequest.address }}</p>
+                <p><b>Phone:</b>&emsp;&emsp;{{ userRegisterRequest.phone }}</p>
+                <p><b>Email:</b>&emsp;&emsp;{{ userRegisterRequest.email }}</p>
                 <p><b>Password:</b>&emsp;&emsp;******</p>
                 <br>
             </div>
@@ -16,22 +16,24 @@
 </template>
 
 <script>
-export default{
+export default {
     name: "profileView",
-    data(){
-        return{
+    data() {
+        return {
             currentUser: null,
-            userRegisterRequest:{firstName: "", lastName: "",
-             address:"", phone:"", email: "", password:""},
-             message: "",
+            userRegisterRequest: {
+                firstName: "", lastName: "",
+                address: "", phone: "", email: "", password: ""
+            },
+            message: "",
         }
     },
     methods: {
-        editProfile(event){
+        editProfile(event) {
             event.preventDefault();
-            this.$router.push({name: "editProfile"});
+            this.$router.push({ name: "editProfile" });
         },
-        getCurrentUser(){
+        getCurrentUser() {
             this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
             this.userRegisterRequest.firstName = this.currentUser.firstName;
             this.userRegisterRequest.lastName = this.currentUser.lastName;
@@ -41,7 +43,7 @@ export default{
             this.userRegisterRequest.password = this.currentUser.password;
         }
     },
-    mounted(){
+    mounted() {
         this.message = "";
         this.getCurrentUser();
     }
@@ -51,20 +53,20 @@ export default{
 <style>
 .wrapperProfile {
     background-color: white;
-    width: 350px;
-    height: 380px;
+    padding: 50px;
     border-radius: 20px;
 }
 
-.wrapper img {
-    margin-bottom: 50px;
-}
-.info{
-    font-size: larger;
-    
-}
-#incorrectInput{
-    color:red;
+.wrapperProfile b {
+    color: rgba(153, 45, 176, 1) !important;
 }
 
+.info {
+    font-size: larger;
+
+}
+
+#incorrectInput {
+    color: red;
+}
 </style>
