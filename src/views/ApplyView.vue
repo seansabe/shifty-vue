@@ -9,15 +9,15 @@
                             <h3>{{ job.title }}</h3>
                         </td>
                         <td class="first-row text-end"><span class="badge rounded-pill text-bg-dark">{{ job.kindOfJob
-                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Hourly
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Hourly
                                 Rate: ${{ job.hourRate
-                                }}</span>
-                            &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Posted {{ job.postingDate
-                            }}</span></td>
+                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Posted {{
+    job.postingDate
+}}</span></td>
                     </tr>
                     <tr>
                         <td colspan="4"><span class="badge rounded-pill text-bg-dark">Start Date: {{ job.jobStartDate
-                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Finish
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Finish
                                 Date: {{
                                     job.jobFinishDate
                                 }}</span></td>
@@ -34,7 +34,7 @@
             </table>
         </div>
         <div class="wrapperApply d-flex flex-column align-items-center" v-else>
-            <h5>There are no jobs available at this moment.</h5>
+            <h5>There are no gigs available at this moment.</h5>
         </div>
     </div>
 </template>
