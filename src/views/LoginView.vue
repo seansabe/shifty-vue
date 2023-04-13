@@ -94,12 +94,6 @@ export default {
     display: none;
 }
 
-.wrapperLogin {
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-}
-
 .wrapperLogin img {
     margin-bottom: 50px;
 }

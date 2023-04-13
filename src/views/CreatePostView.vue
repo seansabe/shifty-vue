@@ -116,7 +116,6 @@ export default {
 .wrapperCreatePost {
     background-color: white;
     border-radius: 20px;
-    margin-top: 10px;
     padding: 50px;
 }
 

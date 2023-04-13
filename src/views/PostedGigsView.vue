@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content posted-gigs-view">
         <div v-if="postedGigsResponse.length > 0" class="wrapperPostedGigs d-flex flex-column align-items-center">
             <table class="table table-borderless mb-3" v-for="job in postedGigsResponse" :key="job.jobId">
                 <tbody>
@@ -7,16 +7,16 @@
                         <td class="first-row">
                             <h3>{{ job.title }}</h3>
                         </td>
-                        <td class="first-row text-end"><span class="badge rounded-pill text-bg-dark">{{ job.kindOfJob
-                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Hourly
+                        <td class="first-row text-end"><span class="badge rounded-pill ">{{ job.kindOfJob
+                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill ">Hourly
                                 Rate: ${{ job.hourRate
                                 }}</span>
-                            &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Posted {{
+                            &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill ">Posted {{
                                 getDaysAgo(job.postingDate) }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><span class="badge rounded-pill text-bg-dark">Start Date: {{ job.jobStartDate
-                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill text-bg-dark">Finish
+                        <td colspan="4"><span class="badge rounded-pill ">Start Date: {{ job.jobStartDate
+                        }}</span> &nbsp;&nbsp;&nbsp; <span class="badge rounded-pill ">Finish
                                 Date: {{
                                     job.jobFinishDate
                                 }}</span></td>
@@ -32,14 +32,14 @@
                         <td class="last-row text-end">
                             <button class="btn btn-dark me-2 btn-shifty-primary" type="button">Edit</button>
                             <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnCancel"
-                    @click="cancel(job.jobId)">Delete</button>
+                                @click="cancel(job.jobId)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="wrapperPostedGigs d-flex flex-column align-items-center" v-else>
-            <h5>You haven't posted any gigs posted yet.</h5>
+            <h5>You haven't posted any gigs yet.</h5>
         </div>
 
     </div>
@@ -119,11 +119,6 @@ export default {
 
 
 <style>
-.wrapperPostedGigs {
-    width: 100%;
-    overflow: auto;
-}
-
 .wrapperPostedGigs h5 {
     color: white;
 }
@@ -131,6 +126,7 @@ export default {
 table {
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 td {
@@ -151,6 +147,6 @@ td {
 }
 
 .wrapperPostedGigs .badge {
-    background-color: #7c24c4 !important;
+    background-color: #7c24c4;
 }
 </style>

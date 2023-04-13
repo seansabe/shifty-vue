@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content apply-view">
         <div v-if="jobs.length > 0" class="wrapperApply">
             <table class="table table-borderless mb-3"
                 v-for="(job, index) in jobs.filter(job => !filterJobs.includes(job.jobId))" :key="index">
@@ -8,16 +8,16 @@
                         <td class="first-row">
                             <h3>{{ job.title }}</h3>
                         </td>
-                        <td class="first-row text-end"><span class="badge rounded-pill text-bg-dark">{{ job.kindOfJob
-                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Hourly
+                        <td class="first-row text-end"><span class="badge rounded-pill ">{{ job.kindOfJob
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Hourly
                                 Rate: ${{ job.hourRate
-                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Posted {{
+                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Posted {{
     job.postingDate
 }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><span class="badge rounded-pill text-bg-dark">Start Date: {{ job.jobStartDate
-                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Finish
+                        <td colspan="4"><span class="badge rounded-pill ">Start Date: {{ job.jobStartDate
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Finish
                                 Date: {{
                                     job.jobFinishDate
                                 }}</span></td>
@@ -115,11 +115,6 @@ export default {
 </script>
 
 <style>
-.wrapperApply {
-    width: 100%;
-    overflow: auto;
-}
-
 .wrapperApply h5 {
     color: white;
 }
@@ -127,6 +122,7 @@ export default {
 table {
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 td {
@@ -147,7 +143,7 @@ td {
 }
 
 .wrapperApply .badge {
-    background-color: #7c24c4 !important;
+    background-color: #7c24c4;
 }
 </style>
 
