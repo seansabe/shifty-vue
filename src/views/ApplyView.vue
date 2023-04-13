@@ -1,6 +1,6 @@
 <template>
     <div class="content apply-view">
-        <div v-if="jobs.length > 0" class="wrapperApply">
+        <div v-if="jobs.length != filterJobs.length" class="wrapperApply">
             <table class="table table-borderless mb-3"
                 v-for="(job, index) in jobs.filter(job => !filterJobs.includes(job.jobId))" :key="index">
                 <tbody>
