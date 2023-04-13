@@ -1,28 +1,30 @@
 <template>
     <div class="content user-app-view">
         <div v-if="allApplications.length > 0" class="wrapperUserApplications d-flex flex-column align-items-center">
-            <table class="table table-borderless mb-3" v-for="app in allApplications" :key="app">
+            <table class="table table-borderless mb-3" v-for="app in allApplications" :key="app.applicationId">
                 <tbody>
                     <tr>
                         <td class="first-row">
                             <h3>{{ app.jobListing.title }}</h3>
                         </td>
-                        <td class="first-row text-end"><span class="badge rounded-pill text-bg-dark">{{
+                        <td class="first-row text-end"><span class="badge rounded-pill ">{{
                             app.jobListing.kindOfJob
-                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Hourly
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Hourly
                                 Rate: ${{ app.jobListing.hourRate
-                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Posted {{
+                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Posted {{
     app.jobListing.postingDate
 }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><span class="badge rounded-pill text-bg-dark">Start Date: {{
+                        <td colspan="4"><span class="badge rounded-pill ">Start Date: {{
                             app.jobListing.jobStartDate
-                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Finish
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Finish
                                 Date: {{
                                     app.jobListing.jobFinishDate
-                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Status: {{
-    this.isCancelled ? 'Cancelled' : app.status }}</span>&nbsp;&nbsp;&nbsp;
+                                }}</span>&nbsp;&nbsp;&nbsp;<span
+                                :class="app.isCancelled ? ('badge rounded-pill text-bg-danger') : ('badge rounded-pill')">Status:
+                                {{
+                                    app.isCancelled ? 'Cancelled' : app.status }}</span>&nbsp;&nbsp;&nbsp;
                         </td>
 
                     </tr>
@@ -31,9 +33,9 @@
                     </tr>
                     <tr>
                         <td colspan="4" class="last-row text-end">
-                            <button class="btn btn-dark me-2 btn-shifty-primary" :id="index"
-                                @click="cancel(app.applicationId)" :disabled="this.isCancelled">
-                                {{ this.isCancelled ? 'Cancelled' : 'Cancel Application' }}</button>
+                            <button class="btn btn-dark me-2 btn-shifty-primary" :id="app.applicationId"
+                                @click="cancel(app.applicationId, app)" :disabled="app.isCancelled">
+                                {{ app.isCancelled ? 'Cancelled' : 'Cancel Application' }}</button>
                         </td>
                     </tr>
                 </tbody>
@@ -53,14 +55,13 @@ export default {
         return {
             allApplications: {}, //all user applications
             currentUser: JSON.parse(localStorage.getItem('currentUser')),
-            isCancelled: false
         }
     },
     methods: {
-        cancel(id) {
+        cancel(id, app) {
             console.log(id);
             ApplicationService.cancelApplication(id).then(response => {
-                this.isCancelled = true;
+                app.isCancelled = true;
                 console.log(response);
             }).catch(error => {
                 console.log(error);
@@ -110,6 +111,6 @@ td {
 }
 
 .wrapperUserApplications .badge {
-    background-color: #7c24c4 !important;
+    background-color: #7c24c4;
 }
 </style>

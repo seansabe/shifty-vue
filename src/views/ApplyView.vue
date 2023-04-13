@@ -8,16 +8,16 @@
                         <td class="first-row">
                             <h3>{{ job.title }}</h3>
                         </td>
-                        <td class="first-row text-end"><span class="badge rounded-pill text-bg-dark">{{ job.kindOfJob
-                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Hourly
+                        <td class="first-row text-end"><span class="badge rounded-pill ">{{ job.kindOfJob
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Hourly
                                 Rate: ${{ job.hourRate
-                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Posted {{
+                                }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Posted {{
     job.postingDate
 }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><span class="badge rounded-pill text-bg-dark">Start Date: {{ job.jobStartDate
-                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill text-bg-dark">Finish
+                        <td colspan="4"><span class="badge rounded-pill ">Start Date: {{ job.jobStartDate
+                        }}</span>&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill ">Finish
                                 Date: {{
                                     job.jobFinishDate
                                 }}</span></td>
@@ -143,7 +143,7 @@ td {
 }
 
 .wrapperApply .badge {
-    background-color: #7c24c4 !important;
+    background-color: #7c24c4;
 }
 </style>
 
