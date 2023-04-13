@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content user-app-view">
         <div v-if="allApplications.length > 0" class="wrapperUserApplications d-flex flex-column align-items-center">
             <table class="table table-borderless mb-3" v-for="app in allApplications" :key="app">
                 <tbody>
@@ -40,7 +40,7 @@
             </table>
         </div>
         <div class="wrapperUserApplications d-flex flex-column align-items-center" v-else>
-            <h5>You haven't applied to a gig yet.</h5>
+            <h5>You haven't applied to any gig yet.</h5>
         </div>
     </div>
 </template>
@@ -82,11 +82,6 @@ export default {
 </script>
 
 <style>
-.wrapperUserApplications {
-    width: 100%;
-    overflow: auto;
-}
-
 .wrapperUserApplications h5 {
     color: white;
 }
@@ -94,6 +89,7 @@ export default {
 table {
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 td {

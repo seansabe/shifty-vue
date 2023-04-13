@@ -24,13 +24,16 @@
                     <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp"
                         v-model="userRegisterRequest.email">
                 </div>
+                <div id="btnLine mb-3">
+                    <button type="submit" class="btn btn-dark me-2 btn-shifty-primary" id="securityUpdate"
+                        @click="updatePassword">Change password</button>
+                    <button type="submit" class="btn btn-dark me-2 btn-shifty-primary" id="btnSave"
+                        @click="save">Save</button>
+                    <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnCancel"
+                        @click="cancel">Cancel</button>
+                </div>
             </form>
-            <div id="btnLine">
-                <button type="submit" class="btn btn-dark me-2 btn-shifty-primary" id="securityUpdate"
-                    @click="updatePassword">Change password</button>
-                <button type="submit" class="btn btn-dark me-2 btn-shifty-primary" id="btnSave" @click="save">Save</button>
-                <button type="submit" class="btn btn-dark btn-shifty-primary" id="btnCancel" @click="cancel">Cancel</button>
-            </div>
+
         </div>
     </div>
 </template>
@@ -52,10 +55,12 @@ export default {
         }
     },
     methods: {
-        cancel() {
+        cancel(event) {
+            event.preventDefault();
             this.$router.push({ name: "profileView" });
         },
-        updatePassword() {
+        updatePassword(event) {
+            event.preventDefault();
             this.$router.push({ name: "editPassword" });
         },
         getCurrentUser() {
@@ -99,12 +104,6 @@ export default {
 </script>
 
 <style>
-.wrapperEditProfile {
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-}
-
 #incorrectInput {
     color: red;
 }

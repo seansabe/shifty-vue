@@ -1,5 +1,5 @@
 <template>
-    <div class="container content"> <!-- DON'T DELETE THIS DIV. ALL THE CONTENT MUST GO INSIDE -->
+    <div class="content"> <!-- DON'T DELETE THIS DIV. ALL THE CONTENT MUST GO INSIDE -->
         <h1>Get side gigs</h1>
         <h1>anytime, anywhere!</h1>
     </div>
@@ -32,5 +32,6 @@ export default {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: white;
+    text-align: center;
 }
 </style>

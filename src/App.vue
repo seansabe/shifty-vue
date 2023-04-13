@@ -1,5 +1,4 @@
 <template>
-  <div class="space-vertical"></div>
   <div class="bar container d-flex flex-row align-items-center">
     <nav class="navbar navbar-expand-lg w-100">
       <div class="container-fluid">
@@ -13,7 +12,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#" @click="goToHome">Home</a>
-            <router-link to="/profile" class="nav-link" aria-current="page" v-if="currentUser"  href="#" @click="goToProfile">Profile</router-link>
+            <router-link to="/profile" class="nav-link" aria-current="page" v-if="currentUser" href="#"
+              @click="goToProfile">Profile</router-link>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="userApplications">My Applies</a>
             <a class="nav-link" aria-current="page" v-if="currentUser" href="#" @click="listPostedGigs">My Gigs</a>
           </div>
@@ -40,8 +40,8 @@
       </form>
     </nav>
   </div>
-  <div class="container p-0">
-    <RouterView @get-user-data="getCurrentUser" :setUpdatedFirstName="setUpdatedFirstName"/>
+  <div class="container d-flex flex-row justify-content-center align-items-center flex-grow-1 p-0 my-3">
+    <RouterView @get-user-data="getCurrentUser" :setUpdatedFirstName="setUpdatedFirstName" />
   </div>
   <div class="footer d-flex flex-row justify-content-center align-items-center w-100">
     <span>&copy; Shifty</span>
@@ -65,8 +65,8 @@ export default {
   components: { RouterView },
 
   methods: {
-    setUpdatedFirstName(updatedFirstName){
-        this.currentUser.firstName = updatedFirstName;
+    setUpdatedFirstName(updatedFirstName) {
+      this.currentUser.firstName = updatedFirstName;
     },
     getCurrentUser() {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

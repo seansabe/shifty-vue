@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content apply-view">
         <div v-if="jobs.length > 0" class="wrapperApply">
             <table class="table table-borderless mb-3"
                 v-for="(job, index) in jobs.filter(job => !filterJobs.includes(job.jobId))" :key="index">
@@ -115,11 +115,6 @@ export default {
 </script>
 
 <style>
-.wrapperApply {
-    width: 100%;
-    overflow: auto;
-}
-
 .wrapperApply h5 {
     color: white;
 }
@@ -127,6 +122,7 @@ export default {
 table {
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 td {

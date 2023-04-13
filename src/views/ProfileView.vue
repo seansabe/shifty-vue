@@ -51,12 +51,6 @@ export default {
 </script>
 
 <style>
-.wrapperProfile {
-    background-color: white;
-    padding: 50px;
-    border-radius: 20px;
-}
-
 .wrapperProfile b {
     color: rgba(153, 45, 176, 1) !important;
 }
